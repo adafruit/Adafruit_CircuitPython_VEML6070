@@ -2,9 +2,9 @@
 Introduction
 ============
 
-.. image:: https://readthedocs.org/projects/circuitpython-veml6070/badge/?version=latest
+.. image:: https://readthedocs.org/projects/adafruit-circuitpython-veml6070/badge/?version=latest
 
-    :target: https://circuitpython-veml6070.readthedocs.io/
+    :target: https://circuitpython.readthedocs.io/projects/veml6070/en/latest/
 
     :alt: Documentation Status
 
@@ -21,13 +21,12 @@ This driver depends on:
 * `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`_
 * `Bus Device <https://github.com/adafruit/Adafruit_CircuitPython_BusDevice>`_
 
-
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
 `the Adafruit library and driver bundle <https://github.com/adafruit/Adafruit_CircuitPython_Bundle>`_.
 
 Usage Example
-=============  
+=============
 
 .. code-block:: python
 
@@ -49,6 +48,7 @@ Usage Example
             print('Reading: {0} | Risk Level: {1}'.format(uv_raw, risk_level))
             time.sleep(1)
 
+
 API Reference
 =============
 
@@ -61,7 +61,7 @@ Contributing
 ============
 
 Contributions are welcome! Please read our `Code of Conduct
-<https://github.com/sommersoft/CircuitPython_veml6070/blob/master/CODE_OF_CONDUCT.md>`_
+<https://github.com/adafruit/Adafruit_CircuitPython_VEML6070/blob/master/CODE_OF_CONDUCT.md>`_
 before contributing to help this project stay welcoming.
 
 Building locally
@@ -86,4 +86,4 @@ Then run the build:
 
 .. code-block:: shell
 
-    circuitpython-build-bundles --filename_prefix circuitpython-veml6070 --library_location .
+    circuitpython-build-bundles --filename_prefix adafruit-circuitpython-veml6070 --library_location .

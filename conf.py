@@ -20,7 +20,7 @@ extensions = [
 # autodoc module docs will fail to generate with a warning.
 # autodoc_mock_imports = ["digitalio", "busio"]
 
-intersphinx_mapping = {'python': ('https://docs.python.org/3.4', None),'BusDevice': ('https://circuitpython.readthedocs.io/projects/bus_device/en/latest/', None),'Register': ('https://circuitpython.readthedocs.io/projects/register/en/latest/', None),'CircuitPython': ('https://circuitpython.readthedocs.io/en/latest/', None)}
+intersphinx_mapping = {'python': ('https://docs.python.org/3.4', None),'BusDevice': ('https://circuitpython.readthedocs.io/projects/bus_device/en/latest/', None),'CircuitPython': ('https://circuitpython.readthedocs.io/en/latest/', None)}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -31,9 +31,9 @@ source_suffix = '.rst'
 master_doc = 'README'
 
 # General information about the project.
-project = u'veml6070 Library'
-copyright = u'2017 Michael Schroeder'
-author = u'Michael Schroeder'
+project = u'Adafruit VEML6070 Library'
+copyright = u'2017 Michael Schroeder(sommersoft)'
+author = u'Michael Schroeder(sommersoft)'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -96,7 +96,7 @@ else:
 html_static_path = ['_static']
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Veml6070Librarydoc'
+htmlhelp_basename = 'AdafruitVeml6070Librarydoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -122,7 +122,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'veml6070Library.tex', u'veml6070 Library Documentation',
+    (master_doc, 'AdafruitVEML6070Library.tex', u'AdafruitVEML6070 Library Documentation',
      author, 'manual'),
 ]
 
@@ -131,7 +131,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'veml6070library', u'veml6070 Library Documentation',
+    (master_doc, 'AdafruitVEML6070library', u'Adafruit VEML6070 Library Documentation',
      [author], 1)
 ]
 
@@ -141,7 +141,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'veml6070Library', u' veml6070 Library Documentation',
-     author, 'veml6070Library', 'One line description of project.',
+    (master_doc, 'AdafruitVEML6070Library', u'Adafruit VEML6070 Library Documentation',
+     author, 'AdafruitVEML6070Library', 'One line description of project.',
      'Miscellaneous'),
 ]

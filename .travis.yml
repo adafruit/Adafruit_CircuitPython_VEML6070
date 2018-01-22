@@ -26,6 +26,6 @@ install:
   - pip install pylint circuitpython-build-tools
 
 script:
-  - pylint veml6070.py
+  - pylint adafruit_veml6070.py
   - ([[ ! -d "examples" ]] || pylint --disable=missing-docstring,invalid-name examples/*.py)
-  - circuitpython-build-bundles --filename_prefix circuitpython-veml6070 --library_location .
+  - circuitpython-build-bundles --filename_prefix adafruit-circuitpython-veml6070 --library_location .
