@@ -1,0 +1,25 @@
+The BSD License (BSD)
+
+Copyright (c) 2016 Limor Fried
+Copyright (c) 2017 Michael Schroeder
+
+This CircuitPython library is based on Limor Fried's Arduino
+library for the Adafruit VEML6070 UV Sensor Breakout.
+License information from that library is included below.
+--------------------------------------------------------
+Designed specifically to work with the VEML6070 sensor from Adafruit
+----> https://www.adafruit.com/products/2899
+
+These sensors use I2C to communicate, 2 pins are required to
+interface.
+
+Adafruit invests time and resources providing this open source code,
+please support Adafruit and open-source hardware by purchasing
+products from Adafruit!
+
+Arduino Library: Written by Limor Fried/Ladyada for Adafruit Industries.
+BSD license, all text above must be included in any redistribution
+https://github.com/adafruit/Adafruit_VEML6070
+--------------------------------------------------------
+CircuitPython Library Author: Michael Schroeder. No affiliation to
+Adafruit is implied.
