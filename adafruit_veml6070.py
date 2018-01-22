@@ -19,7 +19,7 @@
 #  CircuitPython Library Author: Michael Schroeder(sommersoft). No
 #  affiliation to Adafruit is implied.
 """
-`veml6070` - VEML6070 UV Sensor
+`adafruit_VEML6070` - VEML6070 UV Sensor
 ====================================================
 
 CircuitPython library to support VEML6070 UV Index sensor.
@@ -47,7 +47,7 @@ Implementation Notes
 """
 
 __version__ = "1.0.0"
-__repo__ = "https://github.com/sommersoft/veml6070.git"
+__repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_VEML6070.git"
 
 from adafruit_bus_device.i2c_device import I2CDevice
 from micropython import const
