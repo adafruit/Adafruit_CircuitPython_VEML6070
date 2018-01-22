@@ -13,7 +13,7 @@
 #  products from Adafruit!
 #
 #  Arduino Library: Written by Limor Fried/Ladyada for Adafruit Industries.
-#  BSD license, all text above must be included in any redistribution
+#  MIT license, all text above must be included in any redistribution
 #  https://github.com/adafruit/Adafruit_VEML6070
 #
 #  CircuitPython Library Author: Michael Schroeder(sommersoft). No
