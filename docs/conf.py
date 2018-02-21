@@ -28,12 +28,12 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # The master toctree document.
-master_doc = 'README'
+master_doc = 'index'
 
 # General information about the project.
 project = u'Adafruit VEML6070 Library'
-copyright = u'2017 Michael Schroeder(sommersoft)'
-author = u'Michael Schroeder(sommersoft)'
+copyright = u'2017 Limor Fried & Michael Schroeder'
+author = u'Limor Fried & Michael Schroeder'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -54,7 +54,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.env', 'CODE_OF_CONDUCT.md']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -70,6 +70,9 @@ pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
+
+# If this is True, todo emits a warning for each TODO entries. The default is False.
+todo_emit_warnings = True
 
 
 # -- Options for HTML output ----------------------------------------------
