@@ -23,7 +23,7 @@ deploy:
     tags: true
 
 install:
-  - pip install pylint circuitpython-build-tools
+  - pip install pylint circuitpython-build-tools Sphinx sphinx-rtd-theme
 
 script:
   - pylint adafruit_veml6070.py
