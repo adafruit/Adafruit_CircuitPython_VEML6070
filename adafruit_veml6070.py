@@ -96,6 +96,7 @@ class VEML6070:
     Example:
 
     .. code-block:: python
+
         from board import *
         import busio, veml6070, time
 
