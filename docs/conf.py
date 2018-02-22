@@ -102,7 +102,7 @@ html_static_path = ['_static']
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 #
-html_favicon = ['_static/favicon.ico']
+html_favicon = '_static/favicon.ico'
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'AdafruitVeml6070Librarydoc'
