@@ -83,13 +83,13 @@ class VEML6070:
 
     :param i2c_bus: The `busio.I2C` object to use. This is the only required parameter.
     :param str _veml6070_it: The integration time you'd like to set initially. Availble
-                         options: `VEML6070_HALF_T`, `VEML6070_1_T`, `VEML6070_2_T`, and
-                         `VEML6070_4_T`. The higher the '_x_' value, the more accurate
+                         options: ``VEML6070_HALF_T``, ``VEML6070_1_T``, ``VEML6070_2_T``, and
+                         ``VEML6070_4_T``. The higher the '_x_' value, the more accurate
                          the reading is (at the cost of less samples per reading).
-                         Defaults to `VEML6070_1_T` if parameter not passed. To change
+                         Defaults to ``VEML6070_1_T`` if parameter not passed. To change
                          setting after intialization, use
-                         `[veml6070].set_integration_time(new_it)`.
-    :param bool ack: The inital setting of ``ACKnowledge`` on alert. Defaults to `False`
+                         ``[veml6070].set_integration_time(new_it)``.
+    :param bool ack: The inital setting of ``ACKnowledge`` on alert. Defaults to ``False``
                      if parameter not passed. To change setting after intialization,
                      use ``[veml6070].set_ack(new_ack)``.
 
@@ -195,8 +195,8 @@ class VEML6070:
         """
         Sets the Integration Time of the sensor. This is the refresh interval of the
         sensor. The higher the refresh interval, the more accurate the reading is (at
-        the cost of less sampling). The available settings are: `VEML6070_HALF_T`,
-        `VEML6070_1_T`, `VEML6070_2_T`, `VEML6070_4_T`.
+        the cost of less sampling). The available settings are: ``VEML6070_HALF_T``,
+        ``VEML6070_1_T``, ``VEML6070_2_T``, ``VEML6070_4_T``.
         """
         if new_it not in _VEML6070_INTEGRATION_TIME:
             raise ValueError("Integration Time invalid. Valid values are: ",
@@ -228,7 +228,7 @@ class VEML6070:
 
     def get_index(self, _raw):
         """
-        Calculates the UV Risk Level based on the captured UV reading. Requres the `_raw`
+        Calculates the UV Risk Level based on the captured UV reading. Requres the ``_raw``
         argument (from ``veml6070.read``). Risk level is available for Integration Times (IT)
         1, 2, & 4. The result is automatically scaled to the current IT setting.
 
