@@ -243,6 +243,7 @@ class VEML6070:
         * Not to be considered as accurate condition reporting.
         Calculation is based on VEML6070 Application Notes:
         http://www.vishay.com/docs/84310/designingveml6070.pdf
+
         """
 
         # get the divisor for the current IT
