@@ -161,13 +161,17 @@ class VEML6070:
 
         return uvi
 
-    def set_ack(self, new_ack=False):
+    @property
+    def ack(self):
         """
         Turns on or off the ACKnowledge function of the sensor. The ACK function will send
         a signal to the host when the value of the sensed UV light changes beyond the
-        programmed threshold. Use ``[veml6070].set_ack_threshold`` to change between the two
-        available threshold settings.
+        programmed threshold.
         """
+        return self._ack
+
+    @ack.setter
+    def ack(self, new_ack=False):
         if new_ack not in (True, False):
             raise ValueError("ACK must be 'True' or 'False'.")
         self._ack = int(new_ack)
@@ -176,12 +180,17 @@ class VEML6070:
         with self.i2c_cmd as i2c_cmd:
             i2c_cmd.write(self.buf)
 
-    def set_ack_threshold(self, new_ack_thd=0):
+    @property
+    def ack_threshold(self):
         """
-        Sets the ACKnowledge Threshold, which alerts the host controller to value changes
+        The ACKnowledge Threshold, which alerts the host controller to value changes
         greater than the threshold. Available settings are: ``0`` = 102 steps; ``1`` = 145 steps.
         ``0`` is the default setting.
         """
+        return self._ack_thd
+
+    @ack_threshold.setter
+    def ack_threshold(self, new_ack_thd=0):
         if new_ack_thd not in (0, 1):
             raise ValueError("ACK Threshold must be '0' or '1'.")
         self._ack_thd = int(new_ack_thd)
@@ -190,14 +199,18 @@ class VEML6070:
         with self.i2c_cmd as i2c_cmd:
             i2c_cmd.write(self.buf)
 
-
-    def set_integration_time(self, new_it):
+    @property
+    def integration_time(self):
         """
-        Sets the Integration Time of the sensor. This is the refresh interval of the
+        The Integration Time of the sensor, which is the refresh interval of the
         sensor. The higher the refresh interval, the more accurate the reading is (at
         the cost of less sampling). The available settings are: ``VEML6070_HALF_T``,
         ``VEML6070_1_T``, ``VEML6070_2_T``, ``VEML6070_4_T``.
         """
+        return self._it
+
+    @integration_time.setter
+    def integration_time(self, new_it):
         if new_it not in _VEML6070_INTEGRATION_TIME:
             raise ValueError("Integration Time invalid. Valid values are: ",
                              _VEML6070_INTEGRATION_TIME.keys())
