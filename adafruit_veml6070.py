@@ -144,7 +144,6 @@ class VEML6070:
             i2c_cmd.write(self.buf)
 
 
-
     @property
     def read(self):
         """
@@ -171,8 +170,8 @@ class VEML6070:
         return self._ack
 
     @ack.setter
-    def ack(self, new_ack=False):
-        if new_ack not in (True, False):
+    def ack(self, new_ack):
+        if new_ack != bool(new_ack):
             raise ValueError("ACK must be 'True' or 'False'.")
         self._ack = int(new_ack)
         self.buf[0] = (self._ack << 5 | self._ack_thd << 4 |
@@ -190,7 +189,7 @@ class VEML6070:
         return self._ack_thd
 
     @ack_threshold.setter
-    def ack_threshold(self, new_ack_thd=0):
+    def ack_threshold(self, new_ack_thd):
         if new_ack_thd not in (0, 1):
             raise ValueError("ACK Threshold must be '0' or '1'.")
         self._ack_thd = int(new_ack_thd)
