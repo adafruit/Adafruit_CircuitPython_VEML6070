@@ -105,7 +105,7 @@ class VEML6070:
 
             # take 10 readings
             for j in range(10):
-                uv_raw = uv.read
+                uv_raw = uv.raw_uv
                 risk_level = uv.get_index(uv_raw)
                 print('Reading: ', uv_raw, ' | Risk Level: ', risk_level)
                 time.sleep(1)
@@ -145,18 +145,18 @@ class VEML6070:
 
 
     @property
-    def read(self):
+    def raw_uv(self):
         """
         Reads and returns the value of the UV intensity.
         """
-        read_buf = bytearray(2)
+        uv_buf = bytearray(2)
         with self.i2c_low as i2c_low:
-            i2c_low.readinto(read_buf, end=1)
+            i2c_low.readinto(uv_buf, end=1)
 
         with self.i2c_high as i2c_high:
-            i2c_high.readinto(read_buf, start=1)
+            i2c_high.readinto(uv_buf, start=1)
 
-        uvi = read_buf[1] << 8 | read_buf[0]
+        uvi = uv_buf[1] << 8 | uv_buf[0]
 
         return uvi
 
@@ -231,7 +231,7 @@ class VEML6070:
 
     def wake(self):
         """
-        Wakes the VEML6070 from sleep. ``[veml6070].read`` will also wake from sleep.
+        Wakes the VEML6070 from sleep. ``[veml6070].raw_uv`` will also wake from sleep.
         """
         self.buf[0] = (self._ack << 5 | self._ack_thd << 4 |
                        _VEML6070_INTEGRATION_TIME[self._it][0] << 2 | 0x02)
@@ -241,7 +241,7 @@ class VEML6070:
     def get_index(self, _raw):
         """
         Calculates the UV Risk Level based on the captured UV reading. Requres the ``_raw``
-        argument (from ``veml6070.read``). Risk level is available for Integration Times (IT)
+        argument (from ``veml6070.raw_uv``). Risk level is available for Integration Times (IT)
         1, 2, & 4. The result is automatically scaled to the current IT setting.
 
             LEVEL*        UV Index
