@@ -13,7 +13,7 @@ with busio.I2C(board.SCL, board.SDA) as i2c:
 
     # take 10 readings
     for j in range(10):
-        uv_raw = uv.read
+        uv_raw = uv.uv_raw
         risk_level = uv.get_index(uv_raw)
         print('Reading: {0} | Risk Level: {1}'.format(uv_raw, risk_level))
         time.sleep(1)
