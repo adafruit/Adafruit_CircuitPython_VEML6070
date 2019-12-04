@@ -10,8 +10,8 @@ Introduction
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
     
-.. image:: https://github.com/adafruit/Adafruit_CircuitPython_VEML6070/workflows/Build%CI/badge.svg
-    :target: https://github.com/adafruit/Adafruit_CircuitPython_VEML6070
+.. image:: https://github.com/adafruit/Adafruit_CircuitPython_VEML6070/workflows/Build%20CI/badge.svg
+    :target: https://github.com/adafruit/Adafruit_CircuitPython_VEML6070/actions/
     :alt: Build Status
 
 CircuitPython driver for the `VEML6070 UV Index Sensor Breakout <https://www.adafruit.com/product/2899>`_
