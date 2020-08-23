@@ -54,7 +54,6 @@ from micropython import const
 
 
 # Set I2C addresses:
-# pylint: disable=bad-whitespace
 _VEML6070_ADDR_ARA = const(0x18 >> 1)
 _VEML6070_ADDR_CMD = const(0x70 >> 1)
 _VEML6070_ADDR_LOW = const(0x71 >> 1)
@@ -77,7 +76,6 @@ _VEML6070_RISK_LEVEL = {
     "VERY HIGH": [1495, 2054],
     "EXTREME": [2055, 9999],
 }
-# pylint: enable=bad-whitespace
 
 
 class VEML6070:
