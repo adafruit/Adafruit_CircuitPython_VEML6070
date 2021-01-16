@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2018 Michael Schroeder(sommersoft)
+#
+# SPDX-License-Identifier: MIT
+
 #  This CircuitPython library is based on Limor Fried's Arduino
 #  library for the Adafruit VEML6070 UV Sensor Breakout.
 #  License information from that library is included below.
@@ -15,9 +19,7 @@
 #  Arduino Library: Written by Limor Fried/Ladyada for Adafruit Industries.
 #  MIT license, all text above must be included in any redistribution
 #  https://github.com/adafruit/Adafruit_VEML6070
-#
-#  CircuitPython Library Author: Michael Schroeder(sommersoft). No
-#  affiliation to Adafruit is implied.
+
 """
 `adafruit_veml6070` - VEML6070 UV Sensor
 ====================================================
