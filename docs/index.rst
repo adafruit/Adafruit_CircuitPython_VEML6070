@@ -23,6 +23,8 @@ Table of Contents
 .. toctree::
     :caption: Tutorials
 
+    Adafruit VEML6070 UV Index Sensor Breakout Learning Guide <https://learn.adafruit.com/adafruit-veml6070-uv-light-sensor-breakout>
+
 .. toctree::
     :caption: Related Products
 
