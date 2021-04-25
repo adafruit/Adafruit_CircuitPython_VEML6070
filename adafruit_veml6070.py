@@ -21,7 +21,7 @@
 #  https://github.com/adafruit/Adafruit_VEML6070
 
 """
-`adafruit_veml6070` - VEML6070 UV Sensor
+`adafruit_veml6070`
 ====================================================
 
 CircuitPython library to support VEML6070 UV Index sensor.
@@ -38,9 +38,10 @@ Implementation Notes
 
 **Software and Dependencies:**
 
-* Adafruit CircuitPython firmware (2.2.0+) for the ESP8622 and M0-based boards:
-  https://github.com/adafruit/circuitpython/releases
-* Adafruit's Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
+* Adafruit CircuitPython firmware for the supported boards:
+  https://circuitpython.org/downloads
+
+ * Adafruit's Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 
 **Notes:**
 
@@ -84,34 +85,44 @@ class VEML6070:
     """
     Driver base for the VEML6070 UV Light Sensor
 
-    :param i2c_bus: The `busio.I2C` object to use. This is the only required parameter.
-    :param str _veml6070_it: The integration time you'd like to set initially. Availble
-                         options: ``VEML6070_HALF_T``, ``VEML6070_1_T``, ``VEML6070_2_T``, and
-                         ``VEML6070_4_T``. The higher the '_x_' value, the more accurate
+    :param ~busio.I2C i2c_bus: The I2C bus the device is connected to
+    :param str _veml6070_it: The integration time you'd like to set initially. Available
+                         options: :const:`VEML6070_HALF_T`, :const:`VEML6070_1_T`,
+                         :const:`VEML6070_2_T`, and
+                         :const:`VEML6070_4_T`. The higher the '_x_' value, the more accurate
                          the reading is (at the cost of less samples per reading).
-                         Defaults to ``VEML6070_1_T`` if parameter not passed. To change
-                         setting after intialization, use
-                         ``[veml6070].set_integration_time(new_it)``.
-    :param bool ack: The inital setting of ``ACKnowledge`` on alert. Defaults to ``False``
-                     if parameter not passed. To change setting after intialization,
-                     use ``[veml6070].set_ack(new_ack)``.
+                         Defaults to :const:`VEML6070_1_T` if parameter not passed. To change
+                         setting after initialization,
+                         ``VEML6070.set_integration_time(new_it)``.
+    :param bool ack: The initial setting of ``ACKnowledge`` on alert. Defaults to `False`
+                     if parameter not passed. To change setting after initialization,
+                     use ``VEML6070.set_ack(new_ack)``.
 
-    Example:
 
-    .. code-block:: python
+    **Quickstart: Importing and using the device VEML6070**
 
-        from board import *
-        import busio, veml6070, time
+        Here is an example of using the :class:`VEML6070` class.
+        First you will need to import the libraries to use the sensor
 
-        with busio.I2C(SCL, SDA) as i2c:
-            uv = veml6070.VEML6070(i2c, 'VEML6070_1_T', True)
+        .. code-block:: python
 
-            # take 10 readings
-            for j in range(10):
-                uv_raw = uv.uv_raw
-                risk_level = uv.get_index(uv_raw)
-                print('Reading: ', uv_raw, ' | Risk Level: ', risk_level)
-                time.sleep(1)
+            import board
+            import adafruit_veml6070
+
+        Once this is done you can define your `board.I2C` object and define your sensor object
+
+        .. code-block:: python
+
+            i2c = board.I2C()  # uses board.SCL and board.SDA
+            uv = adafruit_veml6070.VEML6070(i2c)
+
+        Now you have access to the :attr:`uv_raw` attribute and the calculate the risk level
+
+        .. code-block:: python
+
+            uv_raw = uv.uv_raw
+            risk_level = uv.get_index(uv_raw)
+
     """
 
     def __init__(self, i2c_bus, _veml6070_it="VEML6070_1_T", ack=False):
@@ -191,8 +202,8 @@ class VEML6070:
     def ack_threshold(self):
         """
         The ACKnowledge Threshold, which alerts the host controller to value changes
-        greater than the threshold. Available settings are: ``0`` = 102 steps; ``1`` = 145 steps.
-        ``0`` is the default setting.
+        greater than the threshold. Available settings are: :const:`0` = 102 steps;
+        :const:`1` = 145 steps. :const:`0` is the default setting.
         """
         return self._ack_thd
 
@@ -215,8 +226,8 @@ class VEML6070:
         """
         The Integration Time of the sensor, which is the refresh interval of the
         sensor. The higher the refresh interval, the more accurate the reading is (at
-        the cost of less sampling). The available settings are: ``VEML6070_HALF_T``,
-        ``VEML6070_1_T``, ``VEML6070_2_T``, ``VEML6070_4_T``.
+        the cost of less sampling). The available settings are: :const:`VEML6070_HALF_T`,
+        :const:`VEML6070_1_T`, :const:`VEML6070_2_T`, :const:`VEML6070_4_T`.
         """
         return self._it
 
@@ -249,7 +260,7 @@ class VEML6070:
 
     def wake(self):
         """
-        Wakes the VEML6070 from sleep. ``[veml6070].uv_raw`` will also wake from sleep.
+        Wakes the VEML6070 from sleep. :class:`VEML6070.uv_raw` will also wake from sleep.
         """
         self.buf[0] = (
             self._ack << 5
@@ -262,17 +273,20 @@ class VEML6070:
 
     def get_index(self, _raw):
         """
-        Calculates the UV Risk Level based on the captured UV reading. Requres the ``_raw``
-        argument (from ``veml6070.uv_raw``). Risk level is available for Integration Times (IT)
+        Calculates the UV Risk Level based on the captured UV reading. Requires the ``_raw``
+        argument (from :meth:`veml6070.uv_raw`). Risk level is available for Integration Times (IT)
         1, 2, & 4. The result is automatically scaled to the current IT setting.
 
-            LEVEL*        UV Index
-            =====         ========
+            =========      ========
+            LEVEL*         UV Index
+            =========      ========
             LOW             0-2
             MODERATE        3-5
             HIGH            6-7
             VERY HIGH       8-10
             EXTREME         >=11
+            =========      ========
+
 
         * Not to be considered as accurate condition reporting.
           Calculation is based on VEML6070 Application Notes:
