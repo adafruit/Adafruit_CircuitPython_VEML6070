@@ -305,10 +305,8 @@ class VEML6070:
         # adjust the raw value using the divisor, then loop through the Risk Level dict
         # to find which range the adjusted raw value is in.
         raw_adj = int(_raw / div)
-        for levels in _VEML6070_RISK_LEVEL:
-            tmp_range = range(
-                _VEML6070_RISK_LEVEL[levels][0], _VEML6070_RISK_LEVEL[levels][1]
-            )
+        for levels, val in _VEML6070_RISK_LEVEL.items():
+            tmp_range = range(val[0], val[1])
             if raw_adj in tmp_range:
                 risk = levels
                 break
