@@ -133,7 +133,7 @@ class VEML6070:
 
     def __init__(
         self, i2c_bus: I2C, _veml6070_it: str = "VEML6070_1_T", ack: bool = False
-    ):
+    ) -> None:
         # Check if the IT is valid
         if _veml6070_it not in _VEML6070_INTEGRATION_TIME:
             raise ValueError(
