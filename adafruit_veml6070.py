@@ -55,6 +55,12 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_VEML6070.git"
 from adafruit_bus_device.i2c_device import I2CDevice
 from micropython import const
 
+try:
+    import typing  # pylint: disable=unused-import
+    from busio import I2C
+except ImportError:
+    pass
+
 
 # Set I2C addresses:
 _VEML6070_ADDR_ARA = const(0x18 >> 1)
@@ -125,7 +131,9 @@ class VEML6070:
 
     """
 
-    def __init__(self, i2c_bus, _veml6070_it="VEML6070_1_T", ack=False):
+    def __init__(
+        self, i2c_bus: I2C, _veml6070_it: str = "VEML6070_1_T", ack: bool = False
+    ) -> None:
         # Check if the IT is valid
         if _veml6070_it not in _VEML6070_INTEGRATION_TIME:
             raise ValueError(
@@ -162,7 +170,7 @@ class VEML6070:
             i2c_cmd.write(self.buf)
 
     @property
-    def uv_raw(self):
+    def uv_raw(self) -> int:
         """
         Reads and returns the value of the UV intensity.
         """
@@ -176,7 +184,7 @@ class VEML6070:
         return buffer[1] << 8 | buffer[0]
 
     @property
-    def ack(self):
+    def ack(self) -> int:
         """
         Turns on or off the ACKnowledge function of the sensor. The ACK function will send
         a signal to the host when the value of the sensed UV light changes beyond the
@@ -185,9 +193,9 @@ class VEML6070:
         return self._ack
 
     @ack.setter
-    def ack(self, new_ack):
+    def ack(self, new_ack: int) -> None:
         if new_ack != bool(new_ack):
-            raise ValueError("ACK must be 'True' or 'False'.")
+            raise ValueError("ACK must be '1' (On) or '0' (Off).")
         self._ack = int(new_ack)
         self.buf[0] = (
             self._ack << 5
@@ -199,7 +207,7 @@ class VEML6070:
             i2c_cmd.write(self.buf)
 
     @property
-    def ack_threshold(self):
+    def ack_threshold(self) -> int:
         """
         The ACKnowledge Threshold, which alerts the host controller to value changes
         greater than the threshold. Available settings are: :const:`0` = 102 steps;
@@ -208,7 +216,7 @@ class VEML6070:
         return self._ack_thd
 
     @ack_threshold.setter
-    def ack_threshold(self, new_ack_thd):
+    def ack_threshold(self, new_ack_thd: int) -> None:
         if new_ack_thd not in (0, 1):
             raise ValueError("ACK Threshold must be '0' or '1'.")
         self._ack_thd = int(new_ack_thd)
@@ -222,7 +230,7 @@ class VEML6070:
             i2c_cmd.write(self.buf)
 
     @property
-    def integration_time(self):
+    def integration_time(self) -> str:
         """
         The Integration Time of the sensor, which is the refresh interval of the
         sensor. The higher the refresh interval, the more accurate the reading is (at
@@ -232,7 +240,7 @@ class VEML6070:
         return self._it
 
     @integration_time.setter
-    def integration_time(self, new_it):
+    def integration_time(self, new_it: str) -> None:
         if new_it not in _VEML6070_INTEGRATION_TIME:
             raise ValueError(
                 "Integration Time invalid. Valid values are: ",
@@ -249,7 +257,7 @@ class VEML6070:
         with self.i2c_cmd as i2c_cmd:
             i2c_cmd.write(self.buf)
 
-    def sleep(self):
+    def sleep(self) -> None:
         """
         Puts the VEML6070 into sleep ('shutdown') mode. Datasheet claims a current draw
         of 1uA while in shutdown.
@@ -258,7 +266,7 @@ class VEML6070:
         with self.i2c_cmd as i2c_cmd:
             i2c_cmd.write(self.buf)
 
-    def wake(self):
+    def wake(self) -> None:
         """
         Wakes the VEML6070 from sleep. :class:`VEML6070.uv_raw` will also wake from sleep.
         """
@@ -271,7 +279,7 @@ class VEML6070:
         with self.i2c_cmd as i2c_cmd:
             i2c_cmd.write(self.buf)
 
-    def get_index(self, _raw):
+    def get_index(self, _raw: int) -> str:
         """
         Calculates the UV Risk Level based on the captured UV reading. Requires the ``_raw``
         argument (from :meth:`veml6070.uv_raw`). Risk level is available for Integration Times (IT)
