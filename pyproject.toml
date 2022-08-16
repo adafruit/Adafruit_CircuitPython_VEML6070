@@ -12,7 +12,7 @@ requires = [
 [project]
 name = "adafruit-circuitpython-veml6070"
 description = "CircuitPython library for VEML6070 UV Index Sensor Breakout."
-version = "0.0.0-auto.0"
+version = "0.0.0+auto.0"
 readme = "README.rst"
 authors = [
     {name = "Adafruit Industries", email = "circuitpython@adafruit.com"}

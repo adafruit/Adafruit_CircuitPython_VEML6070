@@ -49,7 +49,7 @@ Implementation Notes
 
 """
 
-__version__ = "0.0.0-auto.0"
+__version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_VEML6070.git"
 
 from adafruit_bus_device.i2c_device import I2CDevice
