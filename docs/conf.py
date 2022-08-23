@@ -45,8 +45,14 @@ master_doc = "index"
 
 # General information about the project.
 project = "Adafruit VEML6070 Library"
+creation_year = "2017"
 current_year = str(datetime.datetime.now().year)
-copyright = current_year + " Limor Fried & Michael Schroeder"
+year_duration = (
+    current_year
+    if current_year == creation_year
+    else creation_year + " - " + current_year
+)
+copyright = year_duration + " Limor Fried & Michael Schroeder"
 author = "Limor Fried & Michael Schroeder"
 
 # The version info for the project you're documenting, acts as replacement for
