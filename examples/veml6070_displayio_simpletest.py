@@ -5,12 +5,13 @@
 
 # Simple demo of the VEML6070 UV sensor using a built-in display.
 import time
+
 import board
 from adafruit_display_text.bitmap_label import Label
-from terminalio import FONT
 from displayio import Group
-import adafruit_veml6070
+from terminalio import FONT
 
+import adafruit_veml6070
 
 # create a main_group to hold anything we want to show on the display.
 main_group = Group()
@@ -36,8 +37,6 @@ board.DISPLAY.root_group = main_group
 while True:
     # Update the label.text property to change the text on the display
     uv_raw = uv.uv_raw
-    display_output_label.text = (
-        f"Reading: {uv_raw} Risk Level: {uv.get_index(uv_raw)} lux"
-    )
+    display_output_label.text = f"Reading: {uv_raw} Risk Level: {uv.get_index(uv_raw)} lux"
     # wait for a bit
     time.sleep(0.5)
