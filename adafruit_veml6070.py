@@ -56,7 +56,8 @@ from adafruit_bus_device.i2c_device import I2CDevice
 from micropython import const
 
 try:
-    import typing  # pylint: disable=unused-import
+    import typing
+
     from busio import I2C
 except ImportError:
     pass
@@ -131,18 +132,16 @@ class VEML6070:
 
     """
 
-    def __init__(
-        self, i2c_bus: I2C, _veml6070_it: str = "VEML6070_1_T", ack: bool = False
-    ) -> None:
+    def __init__(self, i2c_bus: I2C, _veml6070_it: str = "VEML6070_1_T", ack: bool = False) -> None:
         # Check if the IT is valid
-        if _veml6070_it not in _VEML6070_INTEGRATION_TIME:
+        if _veml6070_it not in _VEML6070_INTEGRATION_TIME:  # noqa: PLR6201
             raise ValueError(
                 "Integration Time invalid. Valid values are: ",
                 _VEML6070_INTEGRATION_TIME.keys(),
             )
 
         # Check if ACK is valid
-        if ack not in (True, False):
+        if ack not in {True, False}:
             raise ValueError("ACK must be 'True' or 'False'.")
 
         # Passed checks; set self values
@@ -163,9 +162,7 @@ class VEML6070:
         except ValueError:  # the ARA address is never valid? datasheet error?
             pass
         self.buf = bytearray(1)
-        self.buf[0] = (
-            self._ack << 5 | _VEML6070_INTEGRATION_TIME[self._it][0] << 2 | 0x02
-        )
+        self.buf[0] = self._ack << 5 | _VEML6070_INTEGRATION_TIME[self._it][0] << 2 | 0x02
         with self.i2c_cmd as i2c_cmd:
             i2c_cmd.write(self.buf)
 
@@ -217,7 +214,7 @@ class VEML6070:
 
     @ack_threshold.setter
     def ack_threshold(self, new_ack_thd: int) -> None:
-        if new_ack_thd not in (0, 1):
+        if new_ack_thd not in {0, 1}:
             raise ValueError("ACK Threshold must be '0' or '1'.")
         self._ack_thd = int(new_ack_thd)
         self.buf[0] = (
@@ -241,7 +238,7 @@ class VEML6070:
 
     @integration_time.setter
     def integration_time(self, new_it: str) -> None:
-        if new_it not in _VEML6070_INTEGRATION_TIME:
+        if new_it not in _VEML6070_INTEGRATION_TIME:  # noqa: PLR6201
             raise ValueError(
                 "Integration Time invalid. Valid values are: ",
                 _VEML6070_INTEGRATION_TIME.keys(),
@@ -249,10 +246,7 @@ class VEML6070:
 
         self._it = new_it
         self.buf[0] = (
-            self._ack << 5
-            | self._ack_thd << 4
-            | _VEML6070_INTEGRATION_TIME[new_it][0] << 2
-            | 0x02
+            self._ack << 5 | self._ack_thd << 4 | _VEML6070_INTEGRATION_TIME[new_it][0] << 2 | 0x02
         )
         with self.i2c_cmd as i2c_cmd:
             i2c_cmd.write(self.buf)
